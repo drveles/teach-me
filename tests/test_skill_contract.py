@@ -63,6 +63,13 @@ class SkillContractTests(unittest.TestCase):
         readme = (ROOT / "README.md").read_text()
         self.assertIn("npx skills add drveles/teach-me@always-learning", readme)
 
+    def test_readme_describes_the_project_and_its_current_foundation(self):
+        readme = (ROOT / "README.md").read_text()
+        self.assertTrue(readme.startswith("# Teach Me\n"))
+        self.assertIn("Make It Stick", readme)
+        self.assertIn("## Skills", readme)
+        self.assertIn("always-learning", readme)
+
 
 if __name__ == "__main__":
     unittest.main()

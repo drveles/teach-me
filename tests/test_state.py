@@ -119,6 +119,29 @@ class StateCliTests(unittest.TestCase):
             },
         )
 
+    def test_review_without_reported_confidence_stays_unknown(self):
+        self.init_subject()
+        self.add_item()
+        self.run_cli(
+            "record-review",
+            "--subject",
+            "distributed-systems",
+            "--item",
+            "majority-overlap",
+            "--rating",
+            "good",
+            "--evidence",
+            "Explained majority overlap without help.",
+            "--now",
+            "2026-08-29T10:00:00Z",
+        )
+        self.run_cli("validate", "--subject", "distributed-systems")
+        event_path = self.home / "subjects" / "distributed-systems" / "events.jsonl"
+        event = json.loads(event_path.read_text())
+        self.assertIsNone(event["confidence"])
+        status = json.loads(self.run_cli("status").stdout)
+        self.assertIsNone(status["subjects"][0]["items"][0]["last_confidence"])
+
     def test_init_subject_creates_the_state_contract(self):
         self.init_subject()
         subject = self.home / "subjects" / "distributed-systems"

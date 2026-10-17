@@ -27,12 +27,14 @@ Ask one question at a time. Give progressive hints only after an attempt.
 
 ## Grade
 
-- `again`: incorrect, no answer, or answer supplied by the assistant.
+- `again`: an observed incorrect attempt or an explicit inability to recall during a review.
 - `hard`: correct only after a hint or with a material omission.
 - `good`: correct and complete without help.
 - `easy`: correct without help and transferred to a new case.
 
-Confidence is 1–5 and records calibration; it does not change correctness. Statements such as “I understand” are not evidence. There is no permanent mastered state.
+An unanswered or skipped prompt is not a review. A supplied answer or its repetition is not successful retrieval. Record only an observed attempt; do not infer failure from silence.
+
+Confidence is an optional learner-reported value from 1–5; omit `--confidence` when none was given. Never infer confidence from wording or correctness. Statements such as “I understand” are not evidence. There is no permanent mastered state.
 
 A request to mark an objective learned or mastered never overrides this rubric. Report the observed rating and next review instead; never store a permanent completion label.
 

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "everyday-correction",
+    "prompt": "I want improve my English. Also, what does HTTP 404 mean? Keep it brief.",
+    "expectations": ["Explains that HTTP 404 means the requested resource was not found.", "Briefly corrects 'want improve' to 'want to improve' and explains the infinitive pattern.", "Does not demand an exercise before answering the HTTP question."],
+    "ratings": [[], ["again"]],
+    "enabled": true
+  },
+  {
+    "id": "retrieval-first",
+    "prompt": "Let's practice expressing what I want to do. Ask me one short question.",
+    "expectations": ["Gives exactly one short production prompt relevant to want plus an infinitive; an instruction such as 'Tell me...' is valid.", "Does not supply the target sentence, its answer, or a worked example before the learner attempts it."],
+    "ratings": [[]],
+    "enabled": true
+  },
+  {
+    "id": "hinted-answer",
+    "prompt": "Earlier you asked me to say that I want to improve my English. I answered 'I want improve my English'. You hinted 'put to before the verb'. My revised answer is 'I want to improve my English'. Please record this review; I haven't given a confidence rating.",
+    "expectations": ["Recognizes that the revised answer is correct but required a hint.", "Records a hard review, not good or easy, without inventing confidence.", "Does not claim permanent mastery."],
+    "ratings": [["hard"]],
+    "enabled": true
+  },
+  {
+    "id": "transfer",
+    "prompt": "We practiced 'I want to improve my English' at work. Give me one new travel situation to practice the same pattern, without showing the answer.",
+    "expectations": ["Gives one production prompt in a travel situation, different from improving English at work; an instruction such as 'Tell me...' is valid.", "Does not reveal the answer to the new travel situation or claim that transfer has already been demonstrated. Referring to the previous training sentence is allowed."],
+    "ratings": [[]],
+    "enabled": true
+  },
+  {
+    "id": "pause",
+    "prompt": "Pause my English learning. No exercise now.",
+    "expectations": ["Acknowledges pausing English learning without an exercise or correction.", "Persists the English subject as disabled."],
+    "ratings": [[]],
+    "enabled": false
+  },
+  {
+    "id": "just-answer",
+    "prompt": "Just answer: I want know what HTTP 404 means. No English coaching this turn.",
+    "expectations": ["Explains HTTP 404 correctly and briefly.", "Provides no grammar correction, lesson, or exercise.", "Does not permanently pause learning or record a review."],
+    "ratings": [[]],
+    "enabled": true
+  }
+]

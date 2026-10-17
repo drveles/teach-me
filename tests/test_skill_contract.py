@@ -2,7 +2,6 @@ import re
 import unittest
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SKILL_DIR = ROOT / "skills" / "always-learning"
 SKILL = SKILL_DIR / "SKILL.md"
@@ -16,9 +15,12 @@ class SkillContractTests(unittest.TestCase):
             SKILL_DIR / "agents" / "openai.yaml",
             SKILL_DIR / "references" / "subject-management.md",
             SKILL_DIR / "references" / "teaching-loop.md",
+            SKILL_DIR / "references" / "english.md",
             SKILL_DIR / "scripts" / "state.py",
         }
-        missing = [str(path.relative_to(ROOT)) for path in expected if not path.is_file()]
+        missing = [
+            str(path.relative_to(ROOT)) for path in expected if not path.is_file()
+        ]
         self.assertEqual(missing, [])
 
     def test_frontmatter_matches_the_skill_directory(self):
@@ -40,7 +42,11 @@ class SkillContractTests(unittest.TestCase):
         links = re.findall(r"\((references/[^)]+\.md)\)", text)
         self.assertEqual(
             set(links),
-            {"references/subject-management.md", "references/teaching-loop.md"},
+            {
+                "references/subject-management.md",
+                "references/teaching-loop.md",
+                "references/english.md",
+            },
         )
         self.assertTrue(all((SKILL_DIR / link).is_file() for link in links))
 

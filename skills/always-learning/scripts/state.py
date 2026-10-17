@@ -464,7 +464,7 @@ def next_schedule(stage, rating, now):
 
 def command_record_review(args):
     home = resolve_home(args.home)
-    if not 1 <= args.confidence <= 5:
+    if args.confidence is not None and not 1 <= args.confidence <= 5:
         raise StateError("confidence must be between 1 and 5")
     evidence = args.evidence.strip()
     if not evidence:
@@ -656,7 +656,7 @@ def event_errors(events, path, item_ids):
         if event.get("rating") not in RATINGS:
             errors.append(f"{label} has invalid rating: {event.get('rating')}")
         confidence = event.get("confidence")
-        if type(confidence) is not int or not 1 <= confidence <= 5:
+        if confidence is not None and (type(confidence) is not int or not 1 <= confidence <= 5):
             errors.append(f"{label} has invalid confidence: {confidence}")
         if not isinstance(event.get("evidence"), str) or not event["evidence"].strip():
             errors.append(f"{label} evidence must be non-empty text")
@@ -895,7 +895,7 @@ def build_parser():
     review.add_argument("--subject", required=True)
     review.add_argument("--item", required=True)
     review.add_argument("--rating", choices=RATINGS, required=True)
-    review.add_argument("--confidence", type=int, required=True)
+    review.add_argument("--confidence", type=int)
     review.add_argument("--evidence", required=True)
     review.add_argument("--now")
     review.set_defaults(handler=command_record_review)
